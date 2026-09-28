@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | NutriCare</title><link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="navbar">
+    <a th:href="@{/home}" class="brand"><span class="brand-icon">🥗</span><span class="brand-text">Nutri<span>Care</span></span></a>
+    <nav class="nav-links">
+        <a th:href="@{/home}" class="nav-link">🏠 Home</a><a th:href="@{/dietitians}" class="nav-link">👩‍⚕️ Dietitians</a>
+        <a th:href="@{/book}" class="nav-link active">📅 Book Appointment</a><a th:href="@{/appointments}" class="nav-link">📋 My Appointments</a>
+        <form th:action="@{/logout}" method="post" class="logout-form"><button class="nav-logout" type="submit">Logout →</button></form>
+    </nav>
+</header>
+<section class="form-page"><div class="form-container">
+    <div class="form-header"><span class="eyebrow">🩺 CONSULTATION</span><h1>Book Your Appointment</h1><p>Choose your dietitian and preferred consultation time.</p></div>
+    <div class="alert error" th:if="${error}" th:text="${error}"></div>
+    <form th:action="@{/book}" th:object="${appointment}" method="post">
+        <div class="form-grid">
+            <div class="form-group"><label>Patient Name</label><input type="text" th:value="${userName}" readonly></div>
+            <div class="form-group"><label>Email Address</label><input type="email" th:value="${userEmail}" readonly></div>
+            <div class="form-group full-width"><label for="dietitianSelect">Select Dietitian</label>
+                <select id="dietitianSelect" th:field="*{dietitianId}" required>
+                    <option value="">Select a dietitian</option>
+                    <option th:each="dietitian : ${dietitians}" th:value="${dietitian.id}" th:text="${dietitian.name + ' — ' + dietitian.specialization}" th:attr="data-name=${dietitian.name}"></option>
+                </select>
+            </div>
+            <div class="form-group full-width"><label for="dietitianName">Dietitian Name</label><input id="dietitianName" th:field="*{dietitianName}" readonly placeholder="Selected dietitian"></div>
+            <div class="form-group"><label for="appointmentDate">Appointment Date</label><input id="appointmentDate" type="date" th:field="*{appointmentDate}" required></div>
+            <div class="form-group"><label for="appointmentTime">Appointment Time</label><input id="appointmentTime" type="time" th:field="*{appointmentTime}" required></div>
+        </div>
+        <button class="primary-button full" type="submit">Confirm Appointment →</button>
+    </form>
+</div></section>
+<footer><div class="footer-logo">🥗 NutriCare</div><p>Personalized care for a healthier you.</p><p class="copyright">© 2026 NutriCare. All rights reserved.</p></footer>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

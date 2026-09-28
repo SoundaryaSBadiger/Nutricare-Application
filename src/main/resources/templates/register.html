@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | NutriCare</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="auth-page">
+<header class="simple-nav">
+    <a class="brand" th:href="@{/patient/register}"><span class="brand-icon">🥗</span><span class="brand-text">Nutri<span>Care</span></span></a>
+</header>
+<main class="auth-shell wide">
+    <section class="auth-card registration-card">
+        <div class="auth-intro">
+            <span class="eyebrow">PATIENT REGISTRATION</span>
+            <h1>Create your NutriCare account</h1>
+            <p>Connect with nutrition experts, book consultations and manage your appointments in one place.</p>
+            <div class="intro-points">
+                <div>✓ Personalized nutrition support</div>
+                <div>✓ Qualified dietitians</div>
+                <div>✓ Simple appointment management</div>
+            </div>
+        </div>
+        <div class="auth-form-area">
+            <div class="alert error" th:if="${error}" th:text="${error}"></div>
+            <form th:action="@{/patient/register}" th:object="${user}" method="post" id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input id="name" type="text" th:field="*{name}" placeholder="Enter your full name" required maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input id="email" type="email" th:field="*{email}" placeholder="you@example.com" required maxlength="150">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" th:field="*{password}" placeholder="Minimum 6 characters" minlength="6" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input id="confirmPassword" type="password" placeholder="Re-enter your password" minlength="6" required>
+                </div>
+                <label class="check-row"><input type="checkbox" required> <span>I agree to the NutriCare terms and privacy guidelines.</span></label>
+                <button class="primary-button full" type="submit">Create Patient Account <span>→</span></button>
+            </form>
+            <p class="auth-switch">Already have an account? <a th:href="@{/login}">Login here</a></p>
+        </div>
+    </section>
+</main>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

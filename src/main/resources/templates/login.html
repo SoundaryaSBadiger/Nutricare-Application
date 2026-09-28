@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | NutriCare</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="auth-page">
+<header class="simple-nav">
+    <a class="brand" th:href="@{/patient/register}"><span class="brand-icon">🥗</span><span class="brand-text">Nutri<span>Care</span></span></a>
+</header>
+<main class="auth-shell">
+    <section class="auth-card single">
+        <div class="auth-icon">🥗</div>
+        <span class="eyebrow">PATIENT LOGIN</span>
+        <h1>Welcome back</h1>
+        <p class="muted">Login to continue to your NutriCare dashboard.</p>
+
+        <div class="alert success" th:if="${param.registered}">Registration successful. Please login.</div>
+        <div class="alert success" th:if="${param.reset}">Password reset successfully. Please login.</div>
+        <div class="alert error" th:if="${param.error}">Invalid email or password.</div>
+        <div class="alert success" th:if="${param.logout}">You have been logged out successfully.</div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="Enter your password" required autocomplete="current-password">
+            </div>
+            <div class="form-options"><a th:href="@{/forgot-password}">Forgot Password?</a></div>
+            <button class="primary-button full" type="submit">Login to NutriCare <span>→</span></button>
+        </form>
+        <p class="auth-switch">Don't have an account? <a th:href="@{/patient/register}">Register here</a></p>
+    </section>
+</main>
+</body>
+</html>

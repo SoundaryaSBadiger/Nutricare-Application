@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments | NutriCare</title><link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="navbar">
+    <a th:href="@{/home}" class="brand"><span class="brand-icon">🥗</span><span class="brand-text">Nutri<span>Care</span></span></a>
+    <nav class="nav-links">
+        <a th:href="@{/home}" class="nav-link">🏠 Home</a><a th:href="@{/dietitians}" class="nav-link">👩‍⚕️ Dietitians</a>
+        <a th:href="@{/book}" class="nav-link">📅 Book Appointment</a><a th:href="@{/appointments}" class="nav-link active">📋 My Appointments</a>
+        <form th:action="@{/logout}" method="post" class="logout-form"><button class="nav-logout" type="submit">Logout →</button></form>
+    </nav>
+</header>
+<section class="page-header"><span>📅 MY NUTRICARE</span><h1>My Appointments</h1><p>View the consultations booked from your account.</p></section>
+<section class="appointment-section">
+    <div class="alert success" th:if="${successMessage}" th:text="${successMessage}"></div>
+    <div class="appointment-table-container" th:if="${!#lists.isEmpty(appointments)}">
+        <table><thead><tr><th>Patient</th><th>Dietitian</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>
+        <tbody><tr th:each="appointment : ${appointments}"><td><strong th:text="${appointment.patientName}">Patient</strong><small th:text="${appointment.patientEmail}">email</small></td><td th:text="${appointment.dietitianName}">Dietitian</td><td th:text="${appointment.appointmentDate}">2026-09-30</td><td th:text="${appointment.appointmentTime}">10:30</td><td><span class="status" th:text="${appointment.status}" th:classappend="${appointment.status == 'CONFIRMED'} ? ' confirmed' : (${appointment.status == 'CANCELLED'} ? ' cancelled' : ' pending')">PENDING</span></td></tr></tbody></table>
+    </div>
+    <div class="empty-state" th:if="${#lists.isEmpty(appointments)}"><div class="empty-icon">📅</div><h3>No appointments yet</h3><p>You have not booked a consultation from this account.</p><a th:href="@{/book}" class="primary-button">Book Your First Appointment →</a></div>
+</section>
+<footer><div class="footer-logo">🥗 NutriCare</div><p>Better nutrition. Better life.</p><p class="copyright">© 2026 NutriCare. All rights reserved.</p></footer>
+</body>
+</html>

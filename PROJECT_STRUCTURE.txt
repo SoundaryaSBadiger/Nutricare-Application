@@ -1,0 +1,37 @@
+NutriCare
+|
++-- pom.xml
++-- README.md
++-- database/
+|   +-- nutricare.sql
++-- src/main/java/com/nutricare/
+|   +-- NutriCareApplication.java
+|   +-- config/
+|   |   +-- DataSeeder.java
+|   |   +-- SecurityConfig.java
+|   +-- controller/
+|   |   +-- AppointmentController.java
+|   |   +-- DietitianController.java
+|   |   +-- PageController.java
+|   +-- model/
+|   |   +-- Appointment.java
+|   |   +-- Dietitian.java
+|   |   +-- User.java
+|   +-- repository/
+|   |   +-- AppointmentRepository.java
+|   |   +-- DietitianRepository.java
+|   |   +-- UserRepository.java
+|   +-- service/
+|       +-- CustomUserDetailsService.java
++-- src/main/resources/
+    +-- application.properties
+    +-- static/css/style.css
+    +-- static/js/script.js
+    +-- templates/
+        +-- register.html
+        +-- login.html
+        +-- forgot-password.html
+        +-- index.html
+        +-- dietitians.html
+        +-- book-appointment.html
+        +-- appointments.html

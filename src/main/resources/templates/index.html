@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriCare | Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="navbar">
+    <a th:href="@{/home}" class="brand"><span class="brand-icon">🥗</span><span class="brand-text">Nutri<span>Care</span></span></a>
+    <nav class="nav-links">
+        <a th:href="@{/home}" class="nav-link active">🏠 Home</a>
+        <a th:href="@{/dietitians}" class="nav-link">👩‍⚕️ Dietitians</a>
+        <a th:href="@{/book}" class="nav-link">📅 Book Appointment</a>
+        <a th:href="@{/appointments}" class="nav-link">📋 My Appointments</a>
+        <form th:action="@{/logout}" method="post" class="logout-form"><button class="nav-logout" type="submit">Logout →</button></form>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-badge">🌿 Welcome, <strong th:text="${userName}">Patient</strong></span>
+        <h1>Eat Better.<br><span>Live Better.</span></h1>
+        <p>Connect with qualified dietitians and create healthier habits with personalized nutrition guidance.</p>
+        <div class="hero-buttons">
+            <a th:href="@{/book}" class="primary-button">Book Consultation →</a>
+            <a th:href="@{/dietitians}" class="secondary-button">Explore Dietitians</a>
+        </div>
+    </div>
+    <div class="hero-visual"><div class="hero-orbit">🥑</div><div class="hero-card"><strong>Healthy Lifestyle</strong><span>Small changes create lasting results.</span></div></div>
+</section>
+
+<section class="section">
+    <div class="section-heading"><span>WHY NUTRICARE?</span><h2>Your health deserves personalized care</h2><p>Everything you need to take the next step toward better nutrition.</p></div>
+    <div class="feature-grid">
+        <div class="feature-card"><div class="feature-icon">👩‍⚕️</div><h3>Expert Dietitians</h3><p>Connect with experienced nutrition professionals.</p></div>
+        <div class="feature-card"><div class="feature-icon">📅</div><h3>Easy Appointments</h3><p>Choose your expert, date and preferred time.</p></div>
+        <div class="feature-card"><div class="feature-icon">🥗</div><h3>Personalized Plans</h3><p>Nutrition guidance designed around your lifestyle.</p></div>
+        <div class="feature-card"><div class="feature-icon">💚</div><h3>Better Wellness</h3><p>Build sustainable habits for everyday life.</p></div>
+    </div>
+</section>
+
+<section class="section light">
+    <div class="section-heading"><span>OUR EXPERTS</span><h2>Meet our dietitians</h2><p>Choose a specialist who matches your nutrition goals.</p></div>
+    <div class="dietitian-grid">
+        <article class="dietitian-card" th:each="dietitian : ${dietitians}">
+            <div class="doctor-avatar">👩‍⚕️</div>
+            <h3 th:text="${dietitian.name}">Dr. Ananya Sharma</h3>
+            <p class="qualification" th:text="${dietitian.qualification}">M.Sc. Nutrition</p>
+            <span class="specialization" th:text="${dietitian.specialization}">Weight Management</span>
+            <div class="doctor-info"><span>⭐ <b th:text="${dietitian.experience}">6</b> Years</span><span>₹ <b th:text="${dietitian.consultationFee}">800</b></span></div>
+            <a th:href="@{/book}" class="card-button">Book Now →</a>
+        </article>
+    </div>
+</section>
+
+<section class="cta"><div><span class="eyebrow light-text">YOUR NEXT STEP</span><h2>Ready to start your healthier journey?</h2><p>Book a consultation with a nutrition expert today.</p></div><a th:href="@{/book}" class="white-button">Get Started →</a></section>
+<footer><div class="footer-logo">🥗 NutriCare</div><p>Personalized nutrition. Better health.</p><p class="copyright">© 2026 NutriCare. All rights reserved.</p></footer>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
