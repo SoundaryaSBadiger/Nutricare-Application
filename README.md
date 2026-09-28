@@ -1,94 +1,131 @@
-# NutriCare – Full Spring Boot + Thymeleaf + MySQL Project
+# 🥗 NutriCare – Dietitian & Nutrition Management System
 
-A beginner-friendly full-stack NutriCare application using Spring Boot, Thymeleaf, MySQL, JPA and Spring Security.
+> A full-stack nutrition management platform for patient registration, secure login, dietitian discovery, and appointment booking.
 
-## Main flow
+## ✨ Features
 
-Open website → Registration → BCrypt password → Login → Spring Security → Home → Dietitians → Book Appointment → My Appointments → Logout.
+- 👤 Patient Registration & Login
+- 🔐 Spring Security & BCrypt Password Encryption
+- 🔑 Forgot Password
+- 🏠 Patient Home Dashboard
+- 👩‍⚕️ Dietitian Discovery
+- 📅 Book Appointments
+- 📋 View My Appointments
+- 🔄 Appointment Status Management
+- 🗄️ MySQL Database Integration
+- 🌐 REST APIs
+- ✨ Responsive UI & Smooth Animations
 
-## Technology
+## 🛠️ Technologies
 
-- Java 23
-- Spring Boot 3.3.5
-- Spring Security 6
-- Spring Data JPA / Hibernate
-- Thymeleaf
-- MySQL 8
-- Maven
-- HTML / CSS / JavaScript
+- **Backend:** Java, Spring Boot, Spring Security, Spring Data JPA
+- **Frontend:** Thymeleaf, HTML, CSS, JavaScript
+- **Database:** MySQL
+- **Build Tool:** Maven
+- **Tools:** Eclipse, VS Code, Postman, Git & GitHub
 
-## Eclipse setup
+## 🔄 Application Flow
 
-1. Extract the ZIP.
-2. Eclipse → File → Import → Maven → Existing Maven Projects.
-3. Select the extracted `nutricare-backend` folder.
-4. Open `src/main/resources/application.properties`.
-5. Set your MySQL password:
 
-```properties
-spring.datasource.password=YOUR_MYSQL_PASSWORD
-```
+🥗 NutriCare
+     ↓
+👤 Registration
+     ↓
+🔐 BCrypt Password
+     ↓
+🔑 Login
+     ↓
+🏠 Home
+     ↓
+👩‍⚕️ Dietitians
+     ↓
+📅 Book Appointment
+     ↓
+🗄️ MySQL
+     ↓
+📋 My Appointments
+     ↓
+🚪 Logout
 
-Or set the environment variable `DB_PASSWORD`.
 
-6. Make sure MySQL Server is running.
-7. Run `com.nutricare.NutriCareApplication` as Java Application.
-8. Open http://localhost:8080/
 
-The JDBC URL contains `createDatabaseIfNotExist=true`, so the `nutricare` database can be created automatically if the MySQL account has permission.
+## 🔄 NutriCare Workflow
 
-## Important
 
-Do not commit a real MySQL password to GitHub. Use the environment variable `DB_PASSWORD` for public repositories.
+                         🥗 NUTRICARE
+                              │
+                              ▼
+                    👤 Patient Registration
+                              │
+                              ▼
+                     🗄️ Save User in MySQL
+                              │
+                              ▼
+                       🔐 BCrypt Password
+                              │
+                              ▼
+                         🔑 Login
+                              │
+                 ┌────────────┴────────────┐
+                 ▼                         ▼
+          ❌ Invalid Login          ✅ Successful Login
+                 │                         │
+                 ▼                         ▼
+             Login Page              🏠 Home Dashboard
+                                           │
+                    ┌──────────────────────┼──────────────────────┐
+                    │                      │                      │
+                    ▼                      ▼                      ▼
+              👩‍⚕️ Dietitians        📅 Book Appointment    📋 My Appointments
+                    │                      │                      │
+                    │                      ▼                      │
+                    │              Select Dietitian              │
+                    │                      │                      │
+                    │                      ▼                      │
+                    │              Select Date & Time             │
+                    │                      │                      │
+                    │                      ▼                      │
+                    │              🗄️ Save Appointment             │
+                    │                      │                      │
+                    └──────────────────────┼──────────────────────┘
+                                           ▼
+                                  📋 Appointment Dashboard
+                                           │
+                                           ▼
+                                      🚪 Logout
+                                           │
+                                           ▼
+                                      🔑 Login Page
 
-## Features
 
-### Registration
-- Full name
-- Email
-- Password and confirmation
-- Duplicate email check
-- BCrypt password hashing
-- MySQL persistence
+### 🔑 Forgot Password Flow
 
-### Login
-- Email/password authentication
-- Spring Security
-- BCrypt verification
-- Invalid-login message
 
-### Forgot password
-- Registered email lookup
-- New password confirmation
-- BCrypt update
+🔑 Login
+   │
+   ▼
+❓ Forgot Password
+   │
+   ▼
+📧 Enter Registered Email
+   │
+   ▼
+🔐 Set New Password
+   │
+   ▼
+🗄️ Update Password in MySQL
+   │
+   ▼
+🔑 Login
 
-This demo uses direct email + new-password reset. A production system should use an email/OTP/token flow.
 
-### Dietitians
-Dietitians are seeded automatically when the table is empty.
 
-### Appointments
-- Select dietitian
-- Select date and time
-- Logged-in patient details are taken from the authenticated account
-- Past dates are rejected
-- Appointment is saved with `PENDING` status
-- My Appointments shows only the logged-in patient's records
+* RESTAPI *
 
-### Logout
-Spring Security invalidates the session and redirects to Login.
 
-## REST API
+GET    /api/dietitians
+POST   /api/dietitians
 
-- GET `/api/dietitians`
-- GET `/api/appointments`
-- POST `/api/appointments`
-- PUT `/api/appointments/{id}/status?value=CONFIRMED`
-
-## Database tables
-
-JPA creates/updates:
-
-- `users`
-- `dietitians`
-- `appointments`
+GET    /api/appointments
+POST   /api/appointments
+PUT    /api/appointments/{id}/status
