@@ -117,15 +117,3 @@
    │
    ▼
 🔑 Login
-
-
-
-* RESTAPI *
-
-
-GET    /api/dietitians
-POST   /api/dietitians
-
-GET    /api/appointments
-POST   /api/appointments
-PUT    /api/appointments/{id}/status
